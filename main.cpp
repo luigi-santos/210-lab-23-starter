@@ -119,3 +119,17 @@ void delete_goat(list<Goat> &trip {
     cout << "Goat deleted" << endl;
 }
 
+void display_trip(comst list<Goat> &trip) {
+    if (trip.empty()) {
+        cout << "ERROR" << endl;
+        return;
+    }
+    cout << "List of Goats:" << endl;
+    int count = 1;
+    for (const auto& goat : trip) {
+        cout << count << " " << goat.get_name() << " ("
+             << goat.get_age() << ", " << got.get_color()
+             << ")" << endl;
+        count++;
+    }
+}
