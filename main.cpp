@@ -9,26 +9,29 @@ using namespace std;
 
 const int SZ_NAMES = 200, SZ_COLORS = 25, MAX_AGE = 20;
 
-int select_goat(list<Goat> trip);
+
 void delete_goat(list<Goat> &trip);
 void add_goat(list<Goat> &trip, string [], string []);
 void display_trip(list<Goat> trip);
 int main_menu();
 
 int main() {
-    srand(time(0));
-    bool again;
+    srand(static_cast<unsigned int>(time(0)));
+    list <Goat> trip;
 
     // read & populate arrays for names and colors
     ifstream fin("names.txt");
     string names[SZ_NAMES];
-    int i = 0;
-    while (fin >> names[i++]);
+    int names_count = 0;
+    while (fin >> names[names_count] && names_cout < SZ_NAMES) {
+        names_count++;
+    }
     fin.close();
     ifstream fin1("colors.txt");
     string colors[SZ_COLORS];
-    i = 0;
-    while (fin1 >> colors[i++]);
+    while (fin1 >> colors[colors_count] && colors_count < SZ_COLORS) {
+        colors_count++;
+    }
     fin1.close();
 
     bool again = true;
