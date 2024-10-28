@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-#include <list>
+#include <set>
 #include <cstdlib>
 #include <ctime>
 #include "Goat.h"
@@ -10,14 +10,14 @@ using namespace std;
 const int SZ_NAMES = 200, SZ_COLORS = 25, MAX_AGE = 20;
 
 
-void delete_goat(list<Goat> &trip);
-void add_goat(list<Goat> &trip, string names[], string colors[], int names_size, int colors_size);
-void display_trip(list<Goat> trip);
+void delete_goat(set<Goat> &trip);
+void add_goat(set<Goat> &trip, string names[], string colors[], int names_size, int colors_size);
+void display_trip(set<Goat> trip);
 int main_menu();
 
 int main() {
     srand(static_cast<unsigned int>(time(0)));
-    list <Goat> trip;
+    set <Goat> trip;
 
     // read & populate arrays for names and colors
     ifstream fin("names.txt");
@@ -86,15 +86,15 @@ int main_menu() {
     }
 }
 
-void add_goat(list<Goat> &trip, string names[], string colors[], int names_size, int colors_size) {
+void add_goat(set<Goat> &trip, string names[], string colors[], int names_size, int colors_size) {
     string name = names[rand() % names_size];
     int age = rand() % (MAX_AGE + 1);
     string color = colors[rand() % colors_size];
-    trip.emplace_back(name, age, color);
+    trip.emplace(name, age, color);
     cout << name << " (" << age << ", " << color << ")" << endl;
 }
 
-void delete_goat(list<Goat> &trip {
+void delete_goat(set<Goat> &trip) {
     if (trip.empty()) {
         cout << "No goats" << endl;
         return;
@@ -102,24 +102,20 @@ void delete_goat(list<Goat> &trip {
 
     display_trip(trip);
 
-    int index;
+    string index;
     cout << "Enter the number of goats to delete: ";
     cin >> index;
 
-    if (cin.fail() || index < 1 || index > trip.size()) {
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cout << "ERROR" << endl;
-        return;
-    }
-
-    auto it = trip.begin();
-    advance(it, index - 1);
+    auto it = trip.find(Goat(index));
+    if (it != trip.end()) {
     trip.erase(it);
     cout << "Goat deleted" << endl;
+    } else {
+        cout << "ERROR" << endl;
+    }
 }
 
-void display_trip(comst list<Goat> &trip) {
+void display_trip(const set<Goat> &trip) {
     if (trip.empty()) {
         cout << "ERROR" << endl;
         return;
