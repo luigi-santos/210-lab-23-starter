@@ -26,7 +26,7 @@ public:
         }
 
         if (name != other.name) {
-            return name < other.name
+            return name < other.name;
 
         }
 
