@@ -19,6 +19,19 @@ public:
 
     Goat(string n, int a, string c) { name = n; age = a; color = c; }
 
+    bool operator<(const Goat& other) const {
+
+        if (age != other.age) {
+            return age < other.age;
+        }
+
+        if (name != other.name) {
+            return name < other.name
+
+        }
+
+        return color < other.color;
+    }
     // setters and getters
     void set_name(string n)         { name = n; };
     string get_name() const         { return name; };
