@@ -48,3 +48,13 @@ int main_menu() {
 
         cin >> choice;
 
+        if (cin.fail() || choice < 1 || choice > 4) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n';
+            cout << "ERROR. Please pick a number between 1-4" << endl;
+        } else {
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            return choice;
+        }
+    }
+}
