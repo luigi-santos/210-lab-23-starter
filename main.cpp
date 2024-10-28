@@ -93,3 +93,29 @@ void add_goat(list<Goat> &trip, string names[], string colors[], int names_size,
     trip.emplace_back(name, age, color);
     cout << name << " (" << age << ", " << color << ")" << endl;
 }
+
+void delete_goat(list<Goat> &trip {
+    if (trip.empty()) {
+        cout << "No goats" << endl;
+        return;
+    }
+
+    display_trip(trip);
+
+    int index;
+    cout << "Enter the number of goats to delete: ";
+    cin >> index;
+
+    if (cin.fail() || index < 1 || index > trip.size()) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "ERROR" << endl;
+        return;
+    }
+
+    auto it = trip.begin();
+    advance(it, index - 1);
+    trip.erase(it);
+    cout << "Goat deleted" << endl;
+}
+
