@@ -2,6 +2,8 @@
 #include <fstream>
 #include <iomanip>
 #include <list>
+#include <cstdlib>
+#include <ctime>
 #include "Goat.h"
 using namespace std;
 
@@ -29,7 +31,29 @@ int main() {
     while (fin1 >> colors[i++]);
     fin1.close();
 
+    bool again = true;
+    while (again) {
+        int choice = main_menu();
 
+        switch (choice) {
+            case 1:
+                add_goat(trip, names, colors, names_count, colors_count);
+                break;
+            case 2:
+                delete_goat(trip);
+                break;
+            case 3:
+                dispay_trip(trip);
+                break;
+            case 4:
+                cout << "Quitting Goat Manager 3001" << endl;
+                again = false;
+                break;
+            default:
+                cout << "INVALID CHOICE" << endl;
+        }
+    }
+                
 
 
     return 0;
